@@ -36,7 +36,7 @@ resource "azurerm_lb_nat_pool" "lbnatpool" {
   frontend_ip_configuration_name = "PublicIPAddress"
 }
 resource "azurerm_lb_probe" "lbprobe" {
-  resource_group_name = var.rsgname
+  resource_group_name = var.resgrpname
   loadbalancer_id     = azurerm_lb.tfloadbalancer.id
   name                = "http-probe"
   protocol            = "Http"
@@ -45,7 +45,7 @@ resource "azurerm_lb_probe" "lbprobe" {
 }
 
 resource "azurerm_lb_rule" "lbrule" {
-  resource_group_name            = var.rsgname
+  resource_group_name            = var.resgrpname
   loadbalancer_id                = azurerm_lb.tfloadbalancer.id
   name                           = "LBRule"
   protocol                       = "Tcp"

@@ -1,19 +1,19 @@
 # MSI keys , add this details to backend.tf file if there is any change in value
 variable "subscription_id" {
   description = "Subscription ID"
-  default     = "f7e63dc3-d066-48af-9708-a993a3fe2720"
+  default     = "de7365e2-8329-48fc-8273-4ab1574e6b4b"
 }
 variable "client_id" {
   description = "App Id"
-  default     = "e80305cf-9df5-4e7c-9713-1ecd5f4cc254"
+  default     = "36b5e80b-bebc-4295-b8f1-59e2221d4112"
 }
 variable "client_secret" {
   description = "Key for Service principal"
-  default     = "giv.Bxo3ucbO-rUvXXZ2pq_4mHN9amb2GQ"
+  default     = "X14X.K-Xs.CoI8ik.L.ev-upx-R4aVE7-m"
 }
 variable "tenant_id" {
   description = "Tenant ID from AD"
-  default     = "77a74f24-9711-4ec1-b800-b75c60c21f3b"
+  default     = "687f51c3-0c5d-4905-84f8-97c683a5b9d1"
 }
 
 
@@ -46,7 +46,7 @@ variable "subnet_name" {
 }
 variable "subnet_address_prefixes" {
   description = "subnet address prefixes"
-  default     = "10.0.1.0/24"
+  default     = ["10.0.1.0/24"]
 }
 
 # Network security group variables
@@ -64,4 +64,22 @@ variable "lbipname" {
 variable "lbname" {
   description = "Load balancer name"
   default="TFLoadBalancer"
+}
+
+# VMSS variables
+variable "vmss_name" {
+  description = "virtual machine scaleset name"
+  default = "tf-vmss"
+}
+variable "vmss_name_prefix" {
+  description = "virtual machine name prefix"
+  default ="tf-vmss"
+}
+variable "vmss_admin_username" {
+  description = "virtual machine Admin user name"
+  default = "adminuser"
+}
+variable "vmss_admin_password" {
+  description = "virtual machine Admin user password"
+  default = "P@ssw0rd1234!"
 }

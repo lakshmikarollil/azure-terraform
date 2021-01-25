@@ -28,24 +28,32 @@ module "security_group" {
   nsgname    = var.nsgname
 }
 
-module "load_balancer"{
+module "load_balancer" {
   source     = "./modules/load_balancer"
   resgrpname = var.resgrpname
   rglocation = var.rglocation
-  lbname = var.lbname
-  lbipname = var.lbipname
+  lbname     = var.lbname
+  lbipname   = var.lbipname
 }
 
-module "vmss"{
-  source     = "./modules/vmss"
+module "vmss" {
+  source           = "./modules/vmss"
+  resgrpname       = var.resgrpname
+  rglocation       = var.rglocation
+  vmss_name        = var.vmss_name
+  vmss_name_prefix = var.vmss_name_prefix
+
+  vmss_admin_username = var.vmss_admin_username
+  vmss_admin_password = var.vmss_admin_password
+  vmss_subnet_id      = module.subnet.subnet_id
+  vmss_lbaddrpool_id  = module.load_balancer.lbaddrpool_id
+  vmss_lbnatpool_id   = module.load_balancer.lbnatpool_id
+  vmss_key_path       = var.vmss_key_path
+}
+
+module "autoscling" {
+  source     = "./modules/autoscaling"
   resgrpname = var.resgrpname
   rglocation = var.rglocation
-  vmss_name = var.vmss_name
-  vmss_name_prefix = var.vmss_name_prefix 
-  vmss_admin_username = var.vmss_admin_username 
-  vmss_admin_password = var.vmss_admin_password 
-  vmss_subnet_id = module.subnet.subnet_id
-  vmss_lbaddrpool_id = module.load_balancer.lbaddrpool_id
-  vmss_lbnatpool_id = module.load_balancer.lbnatpool_id
-  
+  vmss_id    = module.vmss.vmss_id
 }

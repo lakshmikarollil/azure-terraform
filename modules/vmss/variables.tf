@@ -25,3 +25,6 @@ variable "vmss_lbnatpool_id" {
 variable "vmss_subnet_id" {
   description = "subnet id"
 }
+variable "vmss_key_path" {
+  description = "RSA key path"
+}

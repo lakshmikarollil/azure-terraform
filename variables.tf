@@ -59,27 +59,31 @@ variable "nsgname" {
 #Load balancer variables
 variable "lbipname" {
   description = "Load balancer IP name"
-  default ="TFPublicIPForLB"
+  default     = "TFPublicIPForLB"
 }
 variable "lbname" {
   description = "Load balancer name"
-  default="TFLoadBalancer"
+  default     = "TFLoadBalancer"
 }
 
 # VMSS variables
 variable "vmss_name" {
   description = "virtual machine scaleset name"
-  default = "tf-vmss"
+  default     = "tf-vmss"
 }
 variable "vmss_name_prefix" {
   description = "virtual machine name prefix"
-  default ="tf-vmss"
+  default     = "tf-vmss"
 }
 variable "vmss_admin_username" {
   description = "virtual machine Admin user name"
-  default = "adminuser"
+  default     = "adminuser"
 }
 variable "vmss_admin_password" {
   description = "virtual machine Admin user password"
-  default = "P@ssw0rd1234!"
+  default     = "P@ssw0rd1234!"
+}
+variable "vmss_key_path" {
+  description = "RSA key path in local system"
+  default     = "D:\\projects\\internal\\assignment\\terraform assignment\\.ssh\\id_rsa.pub"
 }

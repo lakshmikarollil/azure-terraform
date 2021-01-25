@@ -7,21 +7,18 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   instances                       = 1
   
   computer_name_prefix   = var.vmss_name_prefix
+  
   admin_username         = var.vmss_admin_username
   admin_password         = var.vmss_admin_password
+  
   custom_data            = filebase64("azure-user-data.sh")
 
-  os_profile_linux_config {
-    disable_password_authentication = false
-
-    ssh_keys {
-      #D:\projects\internal\assignment\terraform assignment\.ssh
-      path     = "/home/myadmin/.ssh/authorized_keys"
-      key_data = file("~/.ssh/id_rsa.pub")
-    }
+  admin_ssh_key {
+    username = var.vmss_admin_username
+    public_key = file(var.vmss_key_path)
   }
-
-
+  disable_password_authentication = false
+  
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
